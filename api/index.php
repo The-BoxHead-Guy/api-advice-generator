@@ -1,6 +1,7 @@
 <?php
 
 include "../assets/php/advice-fetching.php";
+phpinfo();
 
 ?>
 
