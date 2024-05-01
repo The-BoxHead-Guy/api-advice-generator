@@ -1,6 +1,6 @@
 <?php
 
-include "./assets/php/advice-fetching.php";
+include "../assets/php/advice-fetching.php";
 
 ?>
 
@@ -16,10 +16,10 @@ include "./assets/php/advice-fetching.php";
 
   <!-- Initializing inner files -->
 
-  <link rel="stylesheet" href="./assets/css/normalize.css" />
-  <link rel="stylesheet" href="./assets/css/index.css" />
-  <script src="./assets/js/index.js" defer></script>
-  <script src="./assets/js/prevent.js" async></script>
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
+  <script src="/assets/js/index.js" defer></script>
+  <script src="/assets/js/prevent.js" async></script>
 
   <title>Advice generator app</title>
 </head>
