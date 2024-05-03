@@ -1,7 +1,6 @@
 <?php
 
-include "../assets/php/advice-fetching.php";
-phpinfo();
+include "./assets/php/advice-fetching.php";
 
 ?>
 
