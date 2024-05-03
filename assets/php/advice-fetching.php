@@ -1,36 +1,47 @@
 <?php
 
-const URL = 'https://api.adviceslip.com/advice';
+declare(strict_types=1);
 
-$data = "";
-$id = "";
-$advice = "";
+require_once "pieces-of-advice.php";
 
-function callApi()
+# Getting the random advice after selection
+function get_random_advice(array $pieces_of_advice)
 {
-    global $data, $id, $advice;
-
-    $data = file_get_contents(URL, true);
-    $data = json_decode($data, true);
-
-    /**
-     * Ready variables for use 
-     */
-
-    $id = $data['slip']['id'];
-    $advice = $data['slip']['advice'];
+  return $pieces_of_advice[array_rand($pieces_of_advice)];
 }
 
-callApi();
+# Setting the random advice  variable
+$advice = get_random_advice($pieces_of_advice);
 
-$q = $_REQUEST["q"];
-
-if ($q === 'sent') {
-    callApi();
-    echo $advice;
-    echo $id;
+# Setting the advice ID
+function set_id(array $advice): int
+{
+  return $advice["id"];
 }
 
-/**
- * Resetting API data and HTML items display
- */
+# Setting the advice text
+function set_text(array $advice): string
+{
+  return $advice["advice"];
+}
+
+
+# Returning the advice as JSON encoding for API call
+function return_advice_as_json(array $advice): string
+{
+  return json_encode($advice);
+}
+
+# Handling the GET request for the advice
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+  $id = $_GET["q"] ?? null;
+
+  if ($id) {
+    header("Content-Type: application/json");
+    echo return_advice_as_json($advice);
+    exit;
+  }
+} else {
+  header("HTTP/1.1 405 Method Not Allowed");
+  exit;
+}
