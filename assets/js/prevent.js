@@ -1,3 +1,4 @@
+//todo: Document all the segments of the code for better comprehension
 const adviceForm = document.getElementById("advice-form");
 
 console.log("working");
@@ -11,10 +12,13 @@ function adviceHandler(value) {
       const advice = document.querySelector("#app-msg");
       const msg = document.querySelector(".app-counter");
 
-      console.log(this);
+      const jsonObj = JSON.parse(this.responseText);
 
-      advice.innerHTML = this.responseText;
-      //   msg.innerHTML = this
+      let id = jsonObj.id;
+      let pieceOfAdvice = jsonObj.advice;
+
+      advice.innerHTML = pieceOfAdvice;
+      msg.innerHTML = `#${id}`;
     }
   };
   xmlHttp.open("GET", "./assets/php/advice-fetching.php?q=" + "sent", true);
@@ -25,4 +29,3 @@ adviceForm.addEventListener("submit", (event) => {
   event.preventDefault();
   adviceHandler();
 });
-/*  */

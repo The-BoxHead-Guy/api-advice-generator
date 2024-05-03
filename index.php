@@ -1,6 +1,11 @@
 <?php
 
-include "./assets/php/advice-fetching.php";
+declare(strict_types=1);
+
+require_once "assets/php/advice-fetching.php"; // Importing the advice fetching PHP file
+
+$id = set_id($advice);
+$advice = set_text($advice);
 
 ?>
 
