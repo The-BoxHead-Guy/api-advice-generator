@@ -34,9 +34,10 @@ function adviceHandler(value) {
 function updateUI(value) {
   // Convert the value to JSON for object parsing
   const response = JSON.parse(value);
+  console.log("response: ", response);
 
-  adviceElement.innerHTML = response.advice;
-  messageElement.innerHTML = `#${response.id}`;
+  adviceElement.innerHTML = response.advice_text;
+  messageElement.innerHTML = `#${response.advice_id}`;
 }
 
 // Handles the form submission and prevents its default behavior.
