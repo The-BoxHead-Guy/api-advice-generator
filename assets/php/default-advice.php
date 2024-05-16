@@ -5,83 +5,96 @@ declare(strict_types=1);
 # Creating the default data for advice generator in an array
 $pieces_of_advices = [
   [
-    "id" => 1,
     "advice" => "It is easy to sit up and take notice, what's difficult is getting up and taking action."
   ],
   [
-    "id" => 2,
     "advice" => "The best way to make a permanent change is to break the habit that's keeping you from it."
   ],
   [
-    "id" => 3,
     "advice" => "The biggest risk is not taking any risk at all."
   ],
   [
-    "id" => 4,
-    "advice" => "The most important thing is to enjoy what you're doing."
+    "advice" => "Don't be afraid to fail. Failure is a stepping stone to success."
   ],
   [
-    "id" => 5,
     "advice" => "The opposite of courage is not weakness, it's fear."
   ],
   [
-    "id" => 6,
-    "advice" => "The only limit to our realization of tomorrow will be our doubts of today."
+    "advice" => "Believe in yourself and your abilities. You are capable of achieving anything you set your mind to."
   ],
   [
-    "id" => 7,
     "advice" => "The future belongs to those who believe in the beauty of their dreams."
   ],
   [
-    "id" => 8,
     "advice" => "The most difficult thing is the decision to act, the rest is merely tenacity."
   ],
   [
-    "id" => 9,
     "advice" => "The only way to do great work is to love what you do."
   ],
   [
-    "id" => 10,
-    "advice" => "The key to success is taking massive, persistent action."
+    "advice" => "Success is not final, failure is not fatal: it is the courage to continue that counts."
   ],
   [
-    "id" => 11,
     "advice" => "The secret to getting ahead is getting started."
   ],
   [
-    "id" => 12,
-    "advice" => "The future belongs to those who believe in the beauty of their dreams."
+    "advice" => "Continuous learning is the key to success in any field."
   ],
   [
-    "id" => 13,
-    "advice" => "The most important thing is to enjoy what you're doing."
+    "advice" => "Surround yourself with positive people who will support you in your endeavors."
   ],
   [
-    "id" => 14,
+    "advice" => "Never give up on your dreams. Keep striving for what you believe in."
+  ],
+  [
     "advice" => "The key to success is taking massive, persistent action."
   ],
   [
-    "id" => 15,
-    "advice" => "The secret to getting ahead is getting started."
+    "advice" => "Time is precious. Make the most of every moment."
   ],
   [
-    "id" => 16,
-    "advice" => "The future belongs to those who believe in the beauty of their dreams."
+    "advice" => "Don't be afraid to step outside your comfort zone. Growth happens outside of it."
   ],
   [
-    "id" => 17,
-    "advice" => "The most important thing is to enjoy what you're doing."
+    "advice" => "Continuous learning is the key to success in any field."
   ],
   [
-    "id" => 18,
-    "advice" => "The key to success is taking massive, persistent action."
+    "advice" => "The only limit to our realization of tomorrow will be our doubts of today."
   ],
   [
-    "id" => 19,
-    "advice" => "The secret to getting ahead is getting started."
+    "advice" => "Life is a journey, savor every experience."
   ],
   [
-    "id" => 20,
-    "advice" => "The future belongs to those who believe in the beauty of their dreams."
-  ]
+    "advice" => "What the mind can conceive, the man can achieve."
+  ],
+  [
+    "advice" => "Fire is the greatest motivator. Don't be afraid to get uncomfortable. It's in the burning that we forge our greatest selves."
+  ],
+  [
+    "advice" => "Life throws punches, but champions are built by how they dodge, block, and counter. Master your emotional state, and you master your destiny."
+  ],
+  [
+    "advice" => "Most limitations are self-imposed. Shatter your inner doubts with relentless belief. What the mind believes, the body achieves."
+  ],
+  [
+    "advice" => "Progress, not perfection. Don't get paralyzed by analysis. Take massive action, learn, and course-correct as you go. Momentum is key."
+  ],
+  [
+    "advice" => "Success leaves clues. Model those who have achieved what you desire. Learn their strategies, then personalize them for your unique journey."
+  ],
+  [
+    "advice" => "Small wins fuel big dreams. Celebrate every milestone, no matter how seemingly insignificant. Momentum breeds motivation."
+  ],
+  [
+    "advice" => "The quality of your questions determines the quality of your life. Ask empowering questions that propel you forward, not limiting ones that hold you back."
+  ],
+  [
+    "advice" => "Gratitude is the fuel for abundance. Focus on what you have, not what you lack. A grateful heart attracts more good into your life."
+  ],
+  [
+    "advice" => "Your environment shapes your experience. Surround yourself with positive, supportive people who believe in you and inspire you to reach your full potential."
+  ],
+  [
+    "advice" => "Leave your legacy. Don't just exist, contribute. Impact the world in a positive way with your unique gifts and talents. Make a difference."
+  ],
 ];
