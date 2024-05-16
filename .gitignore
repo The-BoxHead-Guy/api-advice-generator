@@ -1,1 +1,2 @@
 .vercel
+/assets/php/cronjobs/db-scan.log
