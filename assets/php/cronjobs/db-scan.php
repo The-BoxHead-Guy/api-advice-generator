@@ -64,7 +64,7 @@ function verify_advice_text(string $str, array $text_list)
 function insert_data($pdo, $data_amount, $pieces_of_advices, $list_advice_texts)
 {
   $start = $data_amount + 1;
-  $end = $start + 1;
+  $end = $start + 2;
   $amount_of_data_inserted = 0;
 
   for ($i = $start; $i < $end; $i++) {
