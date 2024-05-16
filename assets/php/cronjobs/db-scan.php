@@ -5,6 +5,23 @@ declare(strict_types=1);
 require_once __DIR__ . "/../default-advice.php";
 require_once __DIR__ . "/../include/db-handler.php";
 
+// FUNCTION EXECUTIONS
+
+//* Extracting the amount of data from the DB
+$data_amount = get_data_amount($pdo);
+
+//* Saving all the already advice texts existent in the DB
+$list_advice_texts = get_advice_text_list($pdo);
+/* foreach ($list_advice_texts as $key => $text) {
+  # code...
+  echo "ID " . ($key + 1) . ": " . $text["advice_text"] . "\n";
+} */
+
+//* Executing the data insertion into the database
+insert_data($pdo, $data_amount, $pieces_of_advices, $list_advice_texts);
+
+// FUNCTION DECLARATIONS
+
 # Checking how much data it's already in the DB
 function get_data_amount($pdo): int
 {
@@ -22,44 +39,74 @@ function get_data_amount($pdo): int
   }
 }
 
-//* Extracting the amount of data from the DB
-$data_amount = get_data_amount($pdo);
+# Verifying if "advice_text" has been already inserted into the DB
+function verify_advice_text(string $str, array $text_list)
+{
+  $text_is_equal = false;
+
+  foreach ($text_list as $key => $text) {
+    /* echo "text: " . $text["advice_text"] . "\n";
+    echo "str: " . $str . "\n"; */
+
+    if ($text["advice_text"] === $str) {
+      $text_is_equal = true;
+    }
+  }
+
+  if ($text_is_equal) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 # Checking if the data it's already in the database
-function insert_data($pdo, $data_amount, $pieces_of_advices)
+function insert_data($pdo, $data_amount, $pieces_of_advices, $list_advice_texts)
 {
   $start = $data_amount + 1;
-  $end = $start + 5;
+  $end = $start + 1;
   $amount_of_data_inserted = 0;
 
   for ($i = $start; $i < $end; $i++) {
-    $query = "INSERT INTO list_of_advices (advice_id, advice_text)
-    VALUES (:id, :advice);";
+    $query = "INSERT INTO list_of_advices (advice_text)
+    VALUES (:advice);";
 
     # Verifying if there's more data available to insert into
-    if ($i > count($pieces_of_advices) - 1) {
+    if ($i > (count($pieces_of_advices) - 1)) {
       log_cronjob($amount_of_data_inserted);
       die("\nNo more data to insert into the database");
     } else {
       $advice = $pieces_of_advices[$i]["advice"];
 
-      $stmt = $pdo->prepare($query);
-      $stmt->bindParam(":id", $i);
-      $stmt->bindParam(":advice", $advice);
+      if (verify_advice_text($advice, $list_advice_texts)) {
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":advice", $advice);
 
-      $stmt->execute();
+        $stmt->execute();
 
-      echo "\nData with ID: \"$i\" inserted succesfully";
+        echo "\nData with ID: \"$i\" inserted succesfully";
 
-      $amount_of_data_inserted++;
+        $amount_of_data_inserted++;
+      } else {
+        continue;
+      }
     }
   }
 
   log_cronjob($amount_of_data_inserted);
 }
 
-//* Executing the data insertion into the database
-insert_data($pdo, $data_amount, $pieces_of_advices);
+# Gets all the advice texts and returns all the fetched results
+function get_advice_text_list($pdo)
+{
+  $query = "SELECT advice_text FROM list_of_advices;";
+
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
+  $results = $stmt->fetchAll();
+
+  return $results;
+}
 
 # Logging the data insertion after CRON job
 function log_cronjob($data_inserted)
