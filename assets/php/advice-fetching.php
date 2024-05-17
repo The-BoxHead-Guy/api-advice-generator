@@ -55,13 +55,15 @@ function return_advice_as_json(array $advice): string
 
 # Handling the GET request for the advice
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-  $id = $_GET["q"] ?? null;
 
-  if ($id) {
-    header("Content-Type: application/json");
-    echo return_advice_as_json($advice);
-    exit;
-  }
+  # Set the content type
+  header("Content-Type: application/json");
+  # CORS management
+  header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+
+  # Preparing advice for API call
+  echo return_advice_as_json($advice);
+  exit;
 } else {
   header("HTTP/1.1 405 Method Not Allowed");
   exit;
