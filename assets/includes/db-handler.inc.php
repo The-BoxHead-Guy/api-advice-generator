@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../variables.php";
+require_once __DIR__ . "/autoload.inc.php";
+require_once __DIR__ . "/../data/variables.php";
 
 //TODO: Refactor this into OOP style
 
