@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../variables.php";
 
+//TODO: Refactor this into OOP style
+
 # Establishing the connection using 'PDO'
 try {
   $pdo = new PDO(DSN, USERNAME, PASSWORD);

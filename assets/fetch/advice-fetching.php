@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+//TODO: refactor advice-fetching by using OOP approach
+
 function fetch_pieces_of_advice(string $http_request): array
 {
   if ($http_request === "GET") {
