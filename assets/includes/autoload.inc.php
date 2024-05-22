@@ -10,16 +10,16 @@ function auto_loader(string $className)
   # Replace namespace with path
   $className = str_replace("\\", "/", $className);
 
-  # Get url from the client (Request)
-  $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
-
   # Set relative path from 'includes' folder
   $relativePath = pathinfo(__FILE__, PATHINFO_DIRNAME);
 
-  error_log("{$className} - {$url} - {$relativePath}");
+  /**
+   * Log errors
+   * error_log("{$className} - {$relativePath}");
+   */
 
   # Set path depending on file summoning
-  if (strpos($url, "includes") !== false || strpos($relativePath, "includes") !== false) {
+  if (strpos($relativePath, "includes") !== false) {
     $path = "../classes/";
   } else {
     $path = "assets/classes/";
