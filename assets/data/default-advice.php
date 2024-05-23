@@ -56,7 +56,7 @@ $pieces_of_advices = [
     "advice" => "Don't be afraid to step outside your comfort zone. Growth happens outside of it."
   ],
   [
-    "advice" => "Continuous learning is the key to success in any field."
+    "advice" => "If you say the truth, you won't need to remember everything"
   ],
   [
     "advice" => "The only limit to our realization of tomorrow will be our doubts of today."
