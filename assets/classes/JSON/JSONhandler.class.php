@@ -6,11 +6,6 @@ namespace JSON;
 
 class JSONhandler
 {
-  public static function encode(array $data): string
-  {
-    return json_encode($data);
-  }
-
   public static function display_api_data($http_request_method, $data)
   {
     if ($http_request_method === "GET") {
@@ -20,7 +15,7 @@ class JSONhandler
       header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 
       # Preparing advice for API call
-      echo self::encode($data);
+      echo json_encode($data);
       exit;
     } else {
       header("HTTP/1.1 405 Method Not Allowed");

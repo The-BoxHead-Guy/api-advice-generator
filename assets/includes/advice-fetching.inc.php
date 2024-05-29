@@ -9,7 +9,6 @@ use JSON\JSONhandler;
 
 # Creating the object for fetching pieces of advice
 $fetchAdvices = new FetchAdvices();
-$handleJSON =  new JSONhandler();
 
 # Getting pieces of advice from DataBase and saving them into a variable.
 $piecesOfAdvices = $fetchAdvices->get_pieces_of_advices();
@@ -18,4 +17,4 @@ $piecesOfAdvices = $fetchAdvices->get_pieces_of_advices();
 $advice = $fetchAdvices->get_random_advice($piecesOfAdvices);
 
 # Handling the GET request for the advice
-$handleJSON->display_api_data($_SERVER['REQUEST_METHOD'], $advice);
+JSONhandler::display_api_data($_SERVER['REQUEST_METHOD'], $advice);
