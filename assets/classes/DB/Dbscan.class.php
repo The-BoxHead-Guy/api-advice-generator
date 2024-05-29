@@ -67,75 +67,52 @@ class Dbscan extends Dbhandler
 
   /**
    * * Verify if the advice text is already in the DB
-   * 
-   * @param string
-   * @param array
-   * @return bool
    */
-  private function verify_advice_text(string $advice, array $list): bool
+  private function verify_advice_text(string $advice, array $dbList): bool
   {
-    $text_is_equal = false;
-
-    foreach ($list as $key => $text) {
+    foreach ($dbList as $key => $text) {
       /* echo "text to compare: " . $text["advice_text"] . " at key: " . $key . PHP_EOL;
       echo "advice text: " . $advice . "\n"; */
 
-      if ($text["advice_text"] === $advice) {
-        $text_is_equal = true;
+      if (strtolower($text["advice_text"]) === strtolower($advice)) {
+        # Returns true if match is found
+        return true;
+      } else {
+        # skips to next element if no match is found
+        continue;
       }
     }
 
-    if ($text_is_equal) {
-      return false;
-    } else {
-      return true;
-    }
+    # Returns false if no match among all data was found
+    return false;
   }
 
   /**
    * * INSERT data INTO DB
-   * 
-   * @param array
-   * @return void
    */
-  public function insert_data(array $list, array $dbList): void
+  public function insert_data(string $advice, array $dbList): void
   {
-    $start = $this->dataAmount;
-    $end = $start + 2;
-    $amount_of_data_inserted = 0;
+    /**
+     * testing purposes
+     * 
+     * echo $text["advice_text"] . PHP_EOL;
+     * echo $advice . PHP_EOL;
+     */
 
-    for ($i = $start; $i < $end; $i++) {
+    if (!$this->verify_advice_text($advice, $dbList)) {
       # Prepare query
       $query = "INSERT INTO " . self::TABLE_NAME . " (" . self::COLUMN_NAME . ") VALUES (:advice)";
 
-      if ($i > (count($list) - 1)) {
-        CreateLog::set_inserted_data($amount_of_data_inserted);
-        CreateLog::log_cronjob();
-        die("No more data to insert...");
-      } else {
+      $stmt = $this->connect()->prepare($query);
+      $stmt->bindParam(":advice", $advice, PDO::PARAM_STR);
+      $stmt->execute();
 
-        # Setting the element to be inserted
-        $advice = $list[$i]["advice"];
-
-        if ($this->verify_advice_text($advice, $dbList)) {
-
-          $stmt = $this->connect()->prepare($query);
-          $stmt->bindParam(":advice", $advice, PDO::PARAM_STR);
-          $stmt->execute();
-
-          error_log("Data of ID: " . ($i + 1) . " inserted successfully." . PHP_EOL);
-
-          $amount_of_data_inserted++;
-        } else {
-          CreateLog::notify_advice_repetition($i, $advice);
-          die("Caught an exception at $i: " . $advice . " already exists in DB." . PHP_EOL);
-        }
-      }
+      error_log("Text: \"" . $advice . "\" has been inserted successfully." . PHP_EOL);
+      # Returns the amount of data inserted for log file update in CRON job
+      CreateLog::log_cronjob(true, $advice);
+    } else {
+      CreateLog::log_cronjob(false, $advice);
     }
-
-    # Returns the amount of data inserted for log file update in CRON job
-    CreateLog::set_inserted_data($amount_of_data_inserted);
-    CreateLog::log_cronjob();
   }
 
   # SETTERS
