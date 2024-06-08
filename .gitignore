@@ -2,4 +2,8 @@
 /assets/php/cronjobs/db-scan.log
 /assets/classes/Test/Test.class.php
 /to-do.md
+/generateSecretKey.php
+/config.php
+.env
+/jwt.php
 
