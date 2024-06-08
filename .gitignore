@@ -6,4 +6,4 @@
 /config.php
 .env
 /jwt.php
-
+/assets/cronjobs/db-scan.log
