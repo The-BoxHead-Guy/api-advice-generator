@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Database;
 
+use Dotenv\Dotenv;
 use PDO;
 use PDOException;
 
@@ -11,16 +12,23 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 class DBHandler
 {
-  # Setting up the connection's parameters
-  private const DSN = "mysql:host=localhost;dbname=pieces_of_advices";
-  private const USERNAME = "root";
-  private const PASSWORD = "Onix-DB";
+  private $dsn;
+  private $username;
+  private $password;
 
-  # Establishing the connection using 'PDO'
+  /**
+   * Sets the database connection parameters and establishes the connection.
+   * 
+   * This function uses `setDatabaseData()` to firstly set the needed credentials and then performs the database connection.
+   * 
+   * @return PDO
+   */
   protected function connect(): PDO
   {
     try {
-      $pdo = new PDO(self::DSN, self::USERNAME, self::PASSWORD);
+      $this->setDatabaseData();
+
+      $pdo = new PDO($this->dsn, $this->username, $this->password);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       // echo "Connection established: " . $pdo->getAttribute(PDO::ATTR_SERVER_VERSION) . "\n";
@@ -29,5 +37,23 @@ class DBHandler
     } catch (PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
     }
+  }
+
+  /**
+   * Sets the database connection parameters from the environment variables.
+   *
+   * This function loads the environment variables using the Dotenv library and
+   * assigns the values to the class properties `$dsn`, `$username`, and `$password`.
+   *
+   * @return void
+   */
+  private function setDatabaseData(): void
+  {
+    $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+    $dotenv->load();
+
+    $this->dsn = $_ENV["DB_DSN"];
+    $this->username = $_ENV["DB_USERNAME"];
+    $this->password = $_ENV["DB_PASSWORD"];
   }
 }
