@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace DB;
+namespace App\Database;
 
 use PDOException;
 use PDO;
-use Cron\CreateLog;
+use App\Cron\CreateLog;
 
 /**
  * Performs several operations of INSERTION, SCANNING, and COUNTING of data. Finally, it returns the amount of data inserted for log file update in CRON folder
  * 
  */
 
-class Dbscan extends Dbhandler
+class DBScan extends DBHandler
 {
   # PROPERTIES
   private const TABLE_NAME = "list_of_advices";

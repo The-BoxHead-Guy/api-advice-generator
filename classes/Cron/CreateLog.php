@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cron;
+namespace App\Cron;
 
 /**
  * * Represents the log creation after a CRON script it's executed
@@ -10,7 +10,7 @@ namespace Cron;
 
 class CreateLog
 {
-  private static $path = "/../../cronjobs/db-scan.log";
+  private static $path = "/../../api/cronjobs/db-scan.log";
   private static $date_format = "F j, Y, g:i a";
 
   /**

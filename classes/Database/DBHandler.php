@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace DB;
+namespace App\Database;
 
 use PDO;
 use PDOException;
 
-require_once __DIR__ . "/../../includes/autoload.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
-class Dbhandler
+class DBHandler
 {
   # Setting up the connection's parameters
   private const DSN = "mysql:host=localhost;dbname=pieces_of_advices";

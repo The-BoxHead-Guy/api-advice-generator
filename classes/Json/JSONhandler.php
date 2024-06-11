@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JSON;
+namespace App\Json;
 
 class JSONhandler
 {

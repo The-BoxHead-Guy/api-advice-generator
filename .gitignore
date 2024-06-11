@@ -1,9 +1,9 @@
 .vercel
-/assets/php/cronjobs/db-scan.log
-/assets/classes/Test/Test.class.php
 /to-do.md
 /generateSecretKey.php
 /config.php
 .env
 /jwt.php
 /assets/cronjobs/db-scan.log
+/api/cronjobs/db-scan.log
+/classes/Test

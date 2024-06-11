@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . "/../includes/autoload.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
-use DB\Dbscan;
-use JSON\SlipAdvice;
+use App\Database\DBScan;
+use App\Json\SlipAdvice;
 
 # Initializing objects for further use
-$DBscan = new Dbscan();
+$DBscan = new DBScan();
 $SlipAdvice = new SlipAdvice();
 
 # Retrieving data from the API

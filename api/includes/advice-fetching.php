@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . "/autoload.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
-use DB\FetchAdvices;
-use JSON\JSONhandler;
+use App\Database\FetchAdvice;
+use App\Json\JSONhandler;
+// use App\Test\Test;
 
 # Creating the object for fetching pieces of advice
-$fetchAdvices = new FetchAdvices();
+$fetchAdvices = new FetchAdvice();
 
 # Getting pieces of advice from DataBase and saving them into a variable.
 $piecesOfAdvices = $fetchAdvices->get_pieces_of_advices();

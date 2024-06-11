@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JSON;
+namespace App\Json;
 
 /**
  * Set the class that will make the connection the external API 'slip advice' whose URL is: https://api.adviceslip.com/advice

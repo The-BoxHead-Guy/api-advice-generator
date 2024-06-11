@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DB;
+namespace App\Database;
 
-use DB\Dbhandler;
+use App\Database\DBHandler;
 use Exception;
 use PDO;
 
-class FetchAdvices extends Dbhandler
+class FetchAdvice extends DBHandler
 {
   # Both id, and text of the advice saved in the database, selected randomly after method call
   private $advice_id;
