@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Json;
 
+require __DIR__ . '/../../vendor/autoload.php';
+
 use Exception;
 
 class JsonReqHandler
@@ -43,6 +45,17 @@ class JsonReqHandler
       return $data;
     } catch (Exception $e) {
       return "Error: " . $e->getMessage();
+    }
+  }
+
+  public static function displayResponseStatus(array $status): void
+  {
+    if ($status["status"]) {
+      http_response_code(200);
+      echo json_encode([$status["message"]]);
+    } else {
+      http_response_code(412);
+      echo json_encode([$status["message"]]);
     }
   }
 }

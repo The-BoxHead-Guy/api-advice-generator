@@ -29,13 +29,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") 
   $signupStatus = $signup->signupUser();
 
   //todo: Manage status code of response using JsonReqHandler
-  if ($signupStatus["status"] === true) {
-    http_response_code(201);
-    echo json_encode([$signupStatus["message"]]);
-  } else {
-    http_response_code(412);
-    echo json_encode([$signupStatus["message"]]);
-  }
+  JsonReqHandler::displayResponseStatus($signupStatus);
 } else {
   echo json_encode(["message" => "Signup failed"]);
 }
