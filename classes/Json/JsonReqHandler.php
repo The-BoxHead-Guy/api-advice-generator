@@ -58,4 +58,15 @@ class JsonReqHandler
       echo json_encode([$status["message"]]);
     }
   }
+
+  public static function displayResponseStatusLogin(array $status): void
+  {
+    if ($status["status"]) {
+      http_response_code(200);
+      echo json_encode($_SESSION);
+    } else {
+      http_response_code(400);
+      echo json_encode($status["message"]);
+    }
+  }
 }
