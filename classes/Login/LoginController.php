@@ -43,7 +43,7 @@ class LoginController extends Login
     $userGettingStatus = $this->getUser($this->email, $this->pwd);
 
     # Sends JSON response
-    return ["status" => $userGettingStatus["status"], "message" => $userGettingStatus["message"]];
+    return ["status" => $userGettingStatus["status"], "message" => $userGettingStatus["message"], "jwt-token" => $userGettingStatus["jwt"]];
   }
 
   /**

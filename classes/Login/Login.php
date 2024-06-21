@@ -7,6 +7,7 @@ namespace App\Login;
 require __DIR__ . "/../../vendor/autoload.php";
 
 use App\Database\DBHandler;
+use App\Jwt\AuthJWT;
 use PDO;
 
 /**
@@ -70,7 +71,10 @@ class Login extends DBHandler
       $_SESSION["userid"] = $user[0]["id"];
       $_SESSION["useruid"] = $user[0]["username"];
 
-      return ["status" => true, "message" => "$_SESSION[useruid] has been successfully logged in."];
+      # Create JWT
+      $jwtKey = AuthJWT::setJWT($_SESSION["userid"], $_SESSION["useruid"]);
+
+      return ["status" => true, "message" => "Login successful.", "jwt" => $jwtKey];
     }
   }
 }

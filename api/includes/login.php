@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . "/../../vendor/autoload.php";
-require __DIR__ . "/../../config.php";
+// require __DIR__ . "/../../config.php";
 
 use App\Login\LoginController;
 use App\Json\JsonReqHandler;
@@ -30,7 +30,15 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") 
   $loginStatus = $login->loginUser();
 
   # Sending JSON response to front-end for user login status
-  JsonReqHandler::displayResponseStatusLogin($loginStatus);
+  if (!$loginStatus["status"]) {
+    http_response_code(401);
+    echo json_encode("Failed to login, " . $loginStatus["message"]);
+    exit();
+  } else {
+    http_response_code(200);
+    header("Status: $loginStatus[status]");
+    echo json_encode($loginStatus["jwt-token"]);
+  }
 
   # Destroys session if user couldn't login
   if (!$loginStatus) {
