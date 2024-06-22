@@ -26,13 +26,13 @@ class AuthJWT
   }
 
   /**
-   * Generates a JSON Web Token (JWT) with the given user ID and username.
+   * Generates a JSON Web Token (JWT) with the given user ID, username, and role.
    *
    * @param string $userid The ID of the user.
    * @param string $username The username of the user.
    * @return string The generated JWT.
    */
-  public static function setJWT($userid, $username): string
+  public static function setJWT($userid, $username, $role): string
   {
     self::loadENV();
 
@@ -40,7 +40,8 @@ class AuthJWT
 
     $payload = [
       "userid" => $userid,
-      "username" => $username
+      "username" => $username,
+      "role" => $role,
     ];
 
     return JWT::encode($payload, $key, self::ENCRYPTION_ALGORITHM);

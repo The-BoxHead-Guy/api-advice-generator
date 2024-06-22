@@ -70,9 +70,10 @@ class Login extends DBHandler
 
       $_SESSION["userid"] = $user[0]["id"];
       $_SESSION["useruid"] = $user[0]["username"];
+      $_SESSION["role"] = $user[0]["role"];
 
       # Create JWT
-      $jwtKey = AuthJWT::setJWT($_SESSION["userid"], $_SESSION["useruid"]);
+      $jwtKey = AuthJWT::setJWT($_SESSION["userid"], $_SESSION["useruid"], $_SESSION["role"]);
 
       return ["status" => true, "message" => "Login successful.", "jwt" => $jwtKey];
     }
