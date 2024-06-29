@@ -1,5 +1,6 @@
 .vercel
 /to-do.md
+/project.md
 /generateSecretKey.php
 /config.php
 .env
