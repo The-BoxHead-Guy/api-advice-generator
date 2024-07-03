@@ -25,8 +25,8 @@ class CreateModel extends DBHandler
   protected function implementeAdviceCreation()
   {
     try {
-      $query = "
-      INSERT INTO " . parent::TABLE_NAME . " (" .             parent::COL_ADVICE_TEXT . ") VALUES (:adviceText);";
+      $query = "INSERT INTO " . parent::TABLE_NAME . " (" . parent::COL_ADVICE_TEXT . ") 
+      VALUES (:adviceText);";
 
       $stmt = $this->connect()->prepare($query);
       $stmt->bindParam(':adviceText', $this->adviceText, PDO::PARAM_STR);

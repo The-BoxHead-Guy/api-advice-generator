@@ -12,13 +12,12 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 class ReadModel extends DBHandler
 {
-  protected const TABLE = "list_of_advices";
-  protected const ID = "advice_id";
-
   protected function getAllData()
   {
     try {
-      $query = "SELECT * FROM " . self::TABLE . " ORDER BY " . self::ID . " ASC";
+      $query = "SELECT * 
+      FROM " . parent::TABLE_NAME . " 
+      ORDER BY " . parent::ID . " ASC";
 
       $stmt = $this->connect()->prepare($query);
       $stmt->execute();

@@ -20,9 +20,6 @@ require __DIR__ . "/../../vendor/autoload.php";
  */
 class UpdateModel extends DBHandler
 {
-  protected const TABLE = "list_of_advices";
-  protected const TEXT = 'advice_text';
-  protected const ID = 'advice_id';
   protected $newAdviceText;
   protected $adviceId;
 
@@ -42,9 +39,9 @@ class UpdateModel extends DBHandler
   protected function implementUpdate()
   {
     try {
-      $query = "UPDATE " . self::TABLE . " 
-                SET " . self::TEXT . " = :advice_text
-                WHERE " . self::ID . " = :advice_id";
+      $query = "UPDATE " . parent::TABLE_NAME . " 
+                SET " . parent::COL_ADVICE_TEXT . " = :advice_text
+                WHERE " . parent::ID . " = :advice_id";
 
       $stmt = $this->connect()->prepare($query);
 
