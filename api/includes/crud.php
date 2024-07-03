@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Crud\CreateController;
 use App\Crud\DeleteController;
 use App\Crud\ReadView;
 use App\Crud\UpdateController;
@@ -66,9 +67,14 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
 
       # Handling POST request to perform data insertion from app.
     case $httpMethodBool["POST"]:
-      echo json_encode("POST activated");
-      break;
+      // echo json_encode($data); 
 
+      $createNewAdvice = new CreateController(null, $data["text"]);
+      $createOperationStatus = $createNewAdvice->createNewAdvice();
+
+      echo json_encode($createOperationStatus);
+
+      break;
 
     default:
       echo json_encode("Method not allowed");
