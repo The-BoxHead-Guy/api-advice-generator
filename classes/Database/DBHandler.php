@@ -12,6 +12,12 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 class DBHandler
 {
+  # Reusable constants
+  protected const TABLE_NAME = "list_of_advices";
+  protected const COL_ADVICE_TEXT = "advice_text";
+  protected const ID = "advice_id";
+
+  # Reusable variables
   private $dsn;
   private $username;
   private $password;
