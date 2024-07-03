@@ -17,9 +17,6 @@ require __DIR__ . "/../../vendor/autoload.php";
 
 class DeleteModel extends DBHandler
 {
-  # Constants
-  private const TABLE = "list_of_advices";
-  private const ID = 'advice_id';
 
   # Properties
   protected $adviceId;
@@ -33,8 +30,8 @@ class DeleteModel extends DBHandler
   protected function implementDelete()
   {
     try {
-      $query = "DELETE FROM " . self::TABLE .
-        " WHERE " . self::ID . " = :advice_id;";
+      $query = "DELETE FROM " . parent::TABLE_NAME .
+        " WHERE " . parent::ID . " = :advice_id;";
 
       $stmt = $this->connect()->prepare($query);
 
