@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Crud\DeleteController;
 use App\Crud\ReadView;
 use App\Crud\UpdateController;
 use App\Json\JsonReqHandler;
@@ -52,13 +53,22 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
 
       break;
 
+      # Handling DELETE request to perform data deletion from app.
+    case $httpMethodBool["DELETE"]:
+
+      $deleteAdvice = new DeleteController($data["id"]);
+      $deleteStatus = $deleteAdvice->delete();
+
+      # Echoing JSON response
+      echo json_encode($deleteStatus);
+
+      break;
+
+      # Handling POST request to perform data insertion from app.
     case $httpMethodBool["POST"]:
       echo json_encode("POST activated");
       break;
 
-    case $httpMethodBool["DELETE"]:
-      echo json_encode("DELETE activated");
-      break;
 
     default:
       echo json_encode("Method not allowed");
